@@ -9,6 +9,12 @@
 </div>
 <div class = "col-md-9">
 <h3>Reviews by People</h3>
+<h5>New Review</h5>
+<% if current_user %>
+<%= render 'reviews/form' %>
+<% end %>
+<h5>All Review</h5>
+<%= render @reviews %>
 </div>
 
 <script type="text/javascript">
