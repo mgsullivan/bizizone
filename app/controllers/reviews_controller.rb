@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:edit, :update, :destroy]
+
   def create
   	@review = current_user.reviews.new(review_params)
 
@@ -9,7 +10,7 @@ class ReviewsController < ApplicationController
         format.html { redirect_to place_path(@review.place), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        redirect_to place_path(@review.place), notice: "Something went wrong"
+        format.html { redirect_to place_path(@review.place), notice: "Something went wrong" }
       end
     end
   end
@@ -24,7 +25,7 @@ class ReviewsController < ApplicationController
         format.html { redirect_to place_path(@review.place), notice: 'Review was successfully updated .' }
         format.json { render :show, status: :created, location: @review }
       else
-        redirect_to place_path(@review.place), notice: "Something went wrong"
+        format.html { redirect_to place_path(@review.place), notice: "Something went wrong" }
       end
     end
 
@@ -45,6 +46,6 @@ class ReviewsController < ApplicationController
   	@review = Review.find(params[:id])
   end
   def review_params
-  	params.require(:review).permit(:content, :place_id)
+  	params.require(:review).permit(:content, :place_id, :score)
   end
 end
