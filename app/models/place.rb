@@ -11,7 +11,7 @@ class Place < ActiveRecord::Base
 	has_many :reviews, dependent: :destroy
 
 	def average_rating
-		self.reviews.sum(:score) / reviews.size
+		(self.reviews.sum(:score).to_f / reviews.size.to_f).round.to_i
 	rescue ZeroDivisionError
 		0
 	end
