@@ -13,9 +13,11 @@
 <body>
 <%= render 'layouts/header' %>
 <%= render partial: 'layouts/flash_messages', flash: flash %>
-
+<% if current_page?(root_path) %>
+<div class="landing">
+<% else %>
 <div class="container">
-
+<% end %>
 <%= yield %>
 </div>
 </body>
