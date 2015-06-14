@@ -5,7 +5,7 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    @places = Place.search(params[:search])
   end
 
   # GET /places/1
@@ -23,6 +23,8 @@ class PlacesController < ApplicationController
   # GET /places/1/edit
   def edit
   end
+
+
 
   # POST /places
   # POST /places.json
